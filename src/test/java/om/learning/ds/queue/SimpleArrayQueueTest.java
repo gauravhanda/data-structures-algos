@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class SimpleArrayQueueTest {
@@ -43,9 +44,19 @@ public class SimpleArrayQueueTest {
     }
 
     @Test
-    public void pushAndPopSequenceShouldMatch() {
+    public void queueContentsShouldMatchWithOrderOfEnqueue() {
         int array[] = {1,2,3,4,5};
         Arrays.stream(array).forEach(simpleArrayQueue::enqueue);
+        Assertions.assertArrayEquals(array, simpleArrayQueue.getQueueContents());
+
+    }
+
+    @Test
+    public void dequeueContentsShouldMatchWithOrderOfEnqueue() {
+        int array[] = {1,2,3};
+        Arrays.stream(array).forEach(simpleArrayQueue::enqueue);
+        int dequeArray[] = IntStream.range(1,4).map(x -> simpleArrayQueue.dequeue()).toArray();
+        Assertions.assertArrayEquals(array, dequeArray);
 
     }
 }

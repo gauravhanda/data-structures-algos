@@ -15,7 +15,7 @@ public class SimpleArrayQueue {
     }
 
     public void enqueue(int value) {
-        if (end >= array.length - 1) {
+        if (end >= array.length) {
             logger.error("Queue is full");
             throw new IllegalStateException("Queue is Full");
         } else {
@@ -34,12 +34,12 @@ public class SimpleArrayQueue {
     }
 
     protected void shift() {
-        int index = end;
-        while (--index > 0) {
-            array[index - 1] = array[index];
+        int index = 0;
+        while (index < end-1) {
+            array[index] = array[index + 1];
+            index++;
         }
-        array[end - 1] = 0;
-        end = end - 1;
+        array[--end] = 0;
     }
 
     public int size() {
