@@ -1,7 +1,6 @@
 package com.learning.ds.tree;
 
-import org.junit.jupiter.api.Test;
-
+import java.util.ArrayDeque;
 import java.util.Arrays;
 
 public class BinaryTreeAsArray {
@@ -39,6 +38,22 @@ public class BinaryTreeAsArray {
                 }
             }
         }
+    }
+
+    private void bfs() {
+
+    }
+
+    private void inorderTraversal() {
+
+    }
+
+    private void preOrder() {
+
+    }
+
+    private void postOrder() {
+
     }
 
     private int leftChildIndex(int nodeCount) {
