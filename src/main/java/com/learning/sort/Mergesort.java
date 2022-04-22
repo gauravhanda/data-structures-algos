@@ -20,7 +20,7 @@ public class Mergesort {
             int[] rArray = Arrays.copyOfRange(array, mid + 1, high + 1); // Copying right array from mid+1 to high
             lArray = divide(lArray, 0, lArray.length - 1); // recursive operation on left small array.
             rArray = divide(rArray, 0, rArray.length - 1); // recursive operation on right array
-            array = merge(array, lArray, rArray); // merging the arrays
+            merge(array, lArray, rArray); // merging the arrays
         }
         return array;
     }
@@ -33,7 +33,7 @@ public class Mergesort {
      * @param rArray
      * @return
      */
-    public static int[] merge(int sortedArray[], int[] lArray, int[] rArray) {
+    public static void merge(int sortedArray[], int[] lArray, int[] rArray) {
         int lIndex = 0, rIndex = 0, sortedArrayIndex = 0;
 
         // Till one the array ends as the arrays can be of different size.
@@ -50,12 +50,10 @@ public class Mergesort {
         while (rIndex < rArray.length) {
             sortedArray[sortedArrayIndex++] = rArray[rIndex++];
         }
-
-        return sortedArray;
     }
 
     public static void main(String[] args) {
-        int array[] = IntStream.range(0, 10).unordered().toArray();
+        int array[] = new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
         array = divide(array, 0, array.length - 1);
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + "\t");
