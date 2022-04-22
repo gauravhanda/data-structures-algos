@@ -12,14 +12,14 @@ public class Mergesort {
      * @param high
      * @return
      */
-    public static int[] divide(int array[], int low, int high) {
-        if (high > 0) { // As we fixed the low to always zero, high is the only factor to be considered
-            int mid = high / 2; // Finding mid-point as integer, can be even or odd.
+    public static int[] divide(int array[]) {
+        if (array.length > 1) { // As we fixed the low to always zero, high is the only factor to be considered
+            int mid = (array.length - 1) / 2; // Finding mid-point as integer, can be even or odd.
             // Last parameter of Array.copyOfRange is one more than end index.
-            int[] lArray = Arrays.copyOfRange(array, low, mid + 1); // Copying to left Array from 0 to mid
-            int[] rArray = Arrays.copyOfRange(array, mid + 1, high + 1); // Copying right array from mid+1 to high
-            lArray = divide(lArray, 0, lArray.length - 1); // recursive operation on left small array.
-            rArray = divide(rArray, 0, rArray.length - 1); // recursive operation on right array
+            int[] lArray = Arrays.copyOfRange(array, 0, mid + 1); // Copying to left Array from 0 to mid
+            int[] rArray = Arrays.copyOfRange(array, mid + 1, array.length); // Copying right array from mid+1 to high
+            lArray = divide(lArray); // recursive operation on left small array.
+            rArray = divide(rArray); // recursive operation on right array
             merge(array, lArray, rArray); // merging the arrays
         }
         return array;
@@ -53,8 +53,8 @@ public class Mergesort {
     }
 
     public static void main(String[] args) {
-        int array[] = new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-        array = divide(array, 0, array.length - 1);
+        int array[] = new int[]{10,6,8,5,7,3,4};
+        array = divide(array);
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + "\t");
         }
